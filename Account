@@ -1,1 +1,70 @@
+  
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ConsoleApp1;
 
+namespace ConsoleApp1
+{
+    abstract class Account
+    {
+        public int AccountNumber { get;  set; }
+        public Customer Owner { get;  set; }
+        public double Balance { get;  set; }
+        public Account(int accountNumber, Customer owner)
+        {
+            AccountNumber = accountNumber;
+            Owner = owner;
+        }
+        public abstract void Deposit(double amount);
+        public abstract void Withdraw(double amount);
+    }
+
+    class SavingsAccount : Account
+    {
+        public SavingsAccount(int accountNumber, Customer owner) : base(accountNumber, owner) { }
+
+        public override void Deposit(double amount)
+        {
+            Balance += amount;
+        }
+        public override void Withdraw(double amount)
+        {
+            if (amount <= Balance)
+            {
+                Balance -= amount;
+            }
+            else
+            {
+                Console.WriteLine("Insufficient funds!");
+            }
+        }
+    }
+
+    class CurrentAccount : Account
+    {
+        public CurrentAccount(int accountNumber, Customer owner) : base(accountNumber, owner) 
+        {
+
+        }
+
+        public override void Deposit(double amount)
+        {
+            Balance += amount;
+        }
+
+        public override void Withdraw(double amount)
+        {
+            if (amount <= Balance)
+            {
+                Balance -= amount;
+            }
+            else
+            {
+                Console.WriteLine("Insufficient funds!");
+            }
+        }
+    }
+}
