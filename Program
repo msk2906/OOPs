@@ -1,1 +1,23 @@
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ConsoleApp1;
+
+class Program
+{
+    static void Main()
+    {
+        Customer customer1 = new Customer(1, "Sathish", "Sathish@gmail.com");
+        SavingsAccount savingsAccount = new SavingsAccount(62001452, customer1);
+        Customer customer2 = new Customer(2, "Kumar", "Kumar@gmail.com");
+        CurrentAccount currentAccount = new CurrentAccount(45001258, customer2);
+
+        savingsAccount.Deposit(12);
+        currentAccount.Deposit(100);
+        savingsAccount.Withdraw(11);
+
+        Console.WriteLine($"Savings Account Balance: $ {savingsAccount.Balance}");
+        Console.WriteLine($"Current Account Balance: $ {currentAccount.Balance}");
+    }
+}
